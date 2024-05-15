@@ -1,3 +1,34 @@
+:root {
+    --space-black: #000000;
+    --space-blue: #14213D;
+    --space-orange: #FCA311;
+    --space-grey: #E5E5E5;
+    --space-white: #FFFFFF;
+
+    --neon-purple : #9B5DE5;
+    --neon-pink : #F15BB5;
+    --neon-yellow : #FEE440;
+    --neon-blue : #00BBF9;
+    --neon-green : #00F5D4;
+
+    --raindbow-red: #FF595E;
+    --raindbow-yellow: #FFCA3A;
+    --raindbow-green: #8AC926;
+    --raindbow-blue: #1982C4;
+    --raindbow-violet: #6A4C93;
+
+    --go-green: #2ba84a;
+
+}
+
+/* Defining this now allows me to use my 1st button hover effect to fill the screen, 
+importantly, without creating a scrollbar, which was an issue I had for a while before 
+making this change*/
+html {
+    width: 100%;
+    height: 100%;
+}
+
 body {
     background: #eeefed;
 }
@@ -52,3 +83,281 @@ p {
 }
 
 /* Add your custom styles for btn-1, btn-2, and btn-3 */
+
+/************************          BUTTON 1          ************************/
+
+/* Defining my space themed colors for the first button */
+.btn-1 {
+    background-color: var(--space-white);
+    color: var(--space-black);
+    border-color: var(--space-black)
+ }
+
+ /* Animation to cover page with starry background image */
+@keyframes space-time-bg {
+    100% {
+        background-image: url("images/space_background.jpg");
+        background-size: cover;
+        background-position: center;   
+        background-repeat: no-repeat;
+    }
+}
+
+/* I had to do extensive googling until I found a stackoverflow page that showed me how to reference a parent when a child element was being hovered
+This is the whole reason I was able to achieve the functionality I wanted on hover 
+The "has" selector is absolutely amazing. However, support for it is not universal yet, 
+still I decided I wanted to use it for this project since the scope is mainly button animations/transitions
+*/
+body:has(.btn-1:hover) {
+    animation: space-time-bg 0.25s ease-in 0s 1 forwards;
+}
+
+/* The below two declaration blocks are necessary to contract the background image upon button 1 being hovered */
+h1:has(~ .btn-1:hover) {
+    color: var(--space-white);
+}
+
+p:has(~ .btn-1:hover) {
+    color: var(--space-white);
+}
+
+
+.btn-1:hover {
+    animation: space-time 0.5s cubic-bezier(.32,.64,0,1) 0s 1 forwards;
+}
+
+@keyframes space-time {
+    100% {
+        background-color: var(--space-black);
+        color: var(--space-white);
+        border-color: var(--space-white);
+    }
+}
+
+/* My goodness this took me a while - I changed the html a bit because I wanted to create the effect of "meteors"
+scattering across and over the button when it was hovered on. So I created a div with 5 divs in it, with those 5 divs being the "meteors"
+Below I added the balls class because initially they looked like balls. This is just to set their initial display properties as I learnt the hard way about flex applying to 
+its children elements, not the parent.*/
+
+.balls {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+/* This serves the purpose of defining some initial attributes all meteors can share, although I later changed the size of some as a design choice */
+.meteor {
+    opacity: 0;
+    width: 14px;
+    height: 14px;
+    background-color: var(--space-grey);
+    border-color: var(--space-grey);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.m1 { 
+    margin-left: 16px;
+    width: 14px;
+    height: 14px;
+}
+
+.m2 { 
+    margin-left: 16px;
+    width: 10px;
+    height: 10px;
+}
+
+.m3 { 
+    margin-left: 16px;
+    width: 12px;
+    height: 12px;
+}
+
+.m4 { 
+    margin-left: 13px;
+    width: 14px;
+    height: 14px;
+}
+
+.m5 {
+    margin-left: 8px;
+    width: 12px;
+    height: 12px;
+}
+
+/* Each meteor gets its own animation so it has somewhat independent and unique looking movement. I feel this could have been done better however.
+I do wonder if I could have utilised some sort of random integer range for the translation values like whats possible in python, 
+but I was happy in the end with how this came out */
+@keyframes m1 {
+    0% {
+        opacity: 1;
+        transform: translateX(-1vw) translateY(0vh);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(2vw) translateY(-2vh);
+    }
+}
+
+@keyframes m2 {
+    0% {
+        opacity: 1;
+        transform: translateX(-1vw) translateY(1vh);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(2vw) translateY(-4vh);
+    }
+}
+
+@keyframes m3 {
+    0% {
+        opacity: 1;
+        transform: translateX(-1vw) translateY(-1vh);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(2vw) translateY(0vh);
+    }
+}
+
+@keyframes m4 {
+    0% {
+        opacity: 1;
+        transform: translateX(-1vw) translateY(0vh);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(2vw) translateY(-3vh);
+    }
+}
+
+@keyframes m5 {
+    0% {
+        opacity: 1;
+        transform: translateX(-1vw) translateY(0vh);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(2vw) translateY(-2vh);
+    }
+}
+
+/* My main objective with these declaration blocks was giving the meteors unique delays, again as a design choice */
+.btn-1:hover .m1 {
+    animation: m1 1s forwards;
+    animation-delay: 0s;
+}
+
+.btn-1:hover .m2 {
+    animation: m2 1s forwards;
+    animation-delay: 0.1s;
+}
+
+.btn-1:hover .m3 {
+    animation: m3 1s forwards;
+    animation-delay: 0s;
+}
+
+.btn-1:hover .m4 {
+    animation: m4 1s forwards;
+    animation-delay: 0.2s;
+}
+
+.btn-1:hover .m5 {
+    animation: m5 1s forwards;
+    animation-delay: 0.1s;
+}
+
+/* I did not expect my design idea for the first button to take so long and need so much code. 
+Although, I am sure there were more efficient was of achieving the results I wanted, and I am just ignorant of those ways still. 
+Anyways, for my last two buttons I will be targetting simpler design choices. */
+
+/************************          BUTTON 2          ************************/
+
+/* Defining button 2's default properties
+transition proved vital in making the animation look smooth and seemless when transitiong from hovering and not hovering*/
+.btn-2 {
+    background-color: var(--neon-blue);
+    color: var(--space-black);
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    letter-spacing: 0.05rem;
+    transition: background-color 0.5s, box-shadow 0.5s;
+    overflow: visible;
+  }
+  
+.btn-2:hover, .btn-2:focus{
+    animation: neon-shadow 6s ease-in-out 0s infinite forwards;
+    background: var(--neon-blue);
+    color: var(--space-black);
+  }
+
+/* Along with transition, ensuring the begining and end of the animation had the same colors was crucial in giving it the smooth look, 
+I know this looks simple, but it took me ages of googling to figure out why the previous version I had looked so rubbish as the each cycle of the animation would complete*/
+@keyframes neon-shadow {
+    0%, 100% {
+        box-shadow: 2px 2px 20px 10px var(--neon-blue);
+        background-color: var(--neon-blue);
+    }
+    25% {
+        box-shadow: 2px 2px 20px 10px var(--neon-green);
+        background-color: var(--neon-green);
+    }
+    50% {
+        box-shadow: 2px 2px 20px 10px var(--neon-blue);
+        background-color: var(--neon-blue);
+    }
+    75% {
+        box-shadow: 2px 2px 20px 10px var(--neon-green);
+        background-color: var(--neon-green);
+    }
+}
+
+
+/************************          BUTTON 3         ************************/
+
+/* I feel like this one is pretty self explanatory compared to the other two.
+I won't lie, I am knackered after the first two buttons so I wanted to go for something
+more straightforward for this last button */
+.btn-3 {
+    font-size: small;
+    letter-spacing: 0.06rem;
+}
+
+.btn-3:hover {
+    font-weight: 600;
+    color: var(--space-black);
+    border-color: var(--space-black);
+    background-color: var(--space-white);
+    transform: translateY(-8px);
+    animation: earthquake 3s linear 0s infinite forwards;
+  }
+  
+  .btn-3:hover::before, .btn-3:focus::before {
+    opacity: 1;
+  }
+
+@keyframes earthquake {
+    25% {
+        transform: translateY(0px);
+        border-color: var(--go-green);
+
+    }
+    50% {
+        transform: translateY(-8px);
+        border-color: var(--space-white);
+    }
+    75% {
+        transform: translateY(0px);
+        border-color: var(--go-green);
+    }
+    0%, 100% {
+        transform: translateY(-8px);
+        border-color: var(--space-white);
+    }
+
+}
