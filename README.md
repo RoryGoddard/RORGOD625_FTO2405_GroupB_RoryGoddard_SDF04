@@ -39,9 +39,3 @@ This was the hardest challenge yet, but of course I feel this is defined by wher
 What I enjoyed about this challenge was how I got indepth hands on experience with so many different aspects of CSS. It was a challenge relating to animating buttons and yet I feel even more comfortable manipulating divs, using flexbox, using the hover and focus pseudo-classes, using keyframes of course, and I even used a somewhat new CSS selector, the :has() selector. This selector allows you to reference parent elements and without it, I would not have overcome the biggest hurdle of my version of this project. 
 
 I'm coming out of this feeling like I have a much more solid grasp of CSS and I'm looking forward to the oncoming projects and challenges with a new strength and confidence.
-
-
-## Submission Guidelines
-- Submit the link to your GitHub repository on the LMS under the SDF04 project tab.
-
-Embark on this CSS journey to transform simple buttons into interactive, animated elements. Let your creativity shine and enjoy the process of bringing static elements to life!
