@@ -334,14 +334,14 @@ more straightforward for this last button */
     border-color: var(--space-black);
     background-color: var(--space-white);
     transform: translateY(-8px);
-    animation: earthquake 3s linear 0s infinite forwards;
+    animation: rise 3s linear 0s infinite forwards;
   }
   
   .btn-3:hover::before, .btn-3:focus::before {
     opacity: 1;
   }
 
-@keyframes earthquake {
+@keyframes rise {
     25% {
         transform: translateY(0px);
         border-color: var(--go-green);
